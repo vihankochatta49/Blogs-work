@@ -7,15 +7,17 @@ const router = express.Router();
 //for home page
 router.get("/feed", ensureAuthenticated, async (req, res) => {
   const profile = req.user;
-  const article = await a.find();
+  const article = await a.find().sort({ date: -1 });
   res.render("feed", { profile, article });
 });
 
 //profile route
 router.get("/:name/:registerNumber", ensureAuthenticated, async (req, res) => {
-  const blogs = await a.find({
-    registerNumber: req.params.registerNumber,
-  });
+  const blogs = await a
+    .find({
+      registerNumber: req.params.registerNumber,
+    })
+    .sort({ date: -1 });
   const num = await userData.findOne({
     registerNumber: req.params.registerNumber,
   });
