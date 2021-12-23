@@ -3,7 +3,7 @@
   <head>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      href="https://cdnjs.cloudflarart.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
@@ -228,9 +228,7 @@
     <nav class="nav">
       <h1 class="head">Blog site</h1>
       <div class="dropdown" style="margin-right: 15px">
-        <a
-          class="profile"
-          href="/<%= profile.slugName %>/<%= profile.registerNumber %>"
+        <a class="profile" href="/<%= num.slugName %>/<%= num.registerNumber %>"
           ><i class="far fa-user"></i
         ></a>
         <div class="dropdown-content arrow-top">
@@ -243,7 +241,6 @@
       <div class="blogs">
         <!-- all articles -->
 
-        <% article.forEach(function (e) { %>
         <div class="bai">
           <!-- single article -->
           <div class="blog">
@@ -253,35 +250,35 @@
               <div>
                 <!--author name-->
                 <a
-                  href="/other-profile/<%= e.name %>/<%= e.registerNumber %>"
+                  href="/other-profile/<%= art.name %>/<%= art.registerNumber %>"
                   class="written-by"
                 >
                   <i
                     class="far fa-user"
                     style="margin-right: 5px; font-size: 18px"
                   ></i>
-                  <%= e.name %>
+                  <%= art.name %>
                 </a>
                 <!-- title -->
                 <a
-                  href="/readMore/<%= e.slug %>/<%= e.blogNumber %>"
+                  href="/readMore/<%= art.slug %>/<%= art.blogNumber %>"
                   class="head1"
-                  ><%= e.title %></a
+                  ><%= art.title %></a
                 >
 
                 <!-- description -->
-                <p class="para"><%= e.description %></p>
+                <p class="para"><%= art.description %></p>
 
                 <!-- date -->
-                <p class="date"><%= e.createdAt %></p>
+                <p class="date"><%= art.createdAt %></p>
 
                 <!-- no. of likes -->
                 <p class="like">
-                  <i class="far fa-thumbs-up"></i> <%= e.likes %>
+                  <i class="far fa-thumbs-up"></i> <%= art.likes %>
                 </p>
                 <div class="btns" style="margin-top: 10px; align-items: center">
                   <!-- like button -->
-                  <form action="/like/<%= e.id %>?_method=PUT" method="POST">
+                  <form action="/like/<%= art.id %>?_method=PUT" method="POST">
                     <div class="dropdown">
                       <button type="submit" class="like-btn">
                         <i class="far fa-thumbs-up"></i>
@@ -296,7 +293,7 @@
                   <div class="dropdown">
                     <a
                       class="like-btn"
-                      href="/comment/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
+                      href="/comment/<%= art.slug %>/<%= art.blogNumber %>/<%= art.registerNumber %>"
                       style="margin-left: 5px"
                       ><i class="far fa-comment"></i
                     ></a>
@@ -304,25 +301,13 @@
                       <p style="text-align: center; color: white">Comment</p>
                     </div>
                   </div>
-
-                  <div class="dropdown">
-                    <a
-                      class="like-btn"
-                      href="/save/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
-                      style="margin-left: 5px"
-                      ><i class="far fa-bookmark"></i
-                    ></a>
-                    <div class="dropdown-content1 arrow-top1">
-                      <p style="text-align: center; color: white">Save</p>
-                    </div>
-                  </div>
                 </div>
               </div>
 
-              <% if(e.imageBase64) {%>
+              <% if(art.imageBase64) {%>
 
               <img
-                src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
+                src="data:<%= art.contentType %>;base64,<%= art.imageBase64 %>"
                 height="150"
                 width="150"
                 style="margin: 15px"
@@ -332,7 +317,6 @@
             </div>
           </div>
         </div>
-        <%})%>
       </div>
     </section>
   </body>
