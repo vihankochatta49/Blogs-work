@@ -21,8 +21,8 @@
       }
 
       .nav {
-        max-width: 100%;
         display: flex;
+        max-width: 100%;
         align-items: center;
         justify-content: space-between;
         box-shadow: 15px 2px 2px white;
@@ -38,6 +38,13 @@
         font-family: monospace;
       }
 
+      .plus {
+        font-size: 2em;
+        color: #7a7893;
+        text-decoration: none;
+        margin-right: 20px;
+      }
+
       .dropdown {
         position: relative;
         display: inline-block;
@@ -46,8 +53,8 @@
       .dropdown-content {
         display: none;
         position: absolute;
-        right: -15px;
-        top: 60px;
+        right: 0px;
+        top: 50px;
         background-color: #2d2d2d;
         min-width: 100px;
         padding: 8px 0px;
@@ -97,14 +104,31 @@
         display: block;
       }
 
-      .profile {
-        color: black;
+      .home {
+        font-size: 2em;
+        color: #7a7893;
         text-decoration: none;
-        font-size: 2.5rem;
+        margin-right: 20px;
       }
 
-      .profile:hover {
-        color: #7a7893;
+      .home:hover {
+        color: black;
+      }
+
+      .userInfo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 15px 15px 0px;
+      }
+
+      .user-name {
+        font-size: 25px;
+        font-family: monospace;
+      }
+
+      .user-posts {
+        font-size: 20px;
       }
 
       .half {
@@ -112,7 +136,6 @@
       }
 
       .blogs {
-        width: 60%;
         display: flex;
         align-items: start;
         justify-content: center;
@@ -121,8 +144,7 @@
       }
 
       .bai {
-        position: relative;
-        width: 95%;
+        width: 50%;
         background-color: white;
         padding: 15px;
         margin-top: 25px;
@@ -130,21 +152,22 @@
 
       .blog {
         display: flex;
-        justify-content: center;
-        align-items: start;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .blog-content {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
         flex-direction: column;
       }
 
       .written-by {
-        display: flex;
         font-size: 14px;
-        justify-content: center;
-        align-items: center;
         margin-bottom: 8px;
         font-family: monospace;
         font-weight: 600;
-        text-decoration: none;
-        color: black;
       }
 
       .head1 {
@@ -180,7 +203,6 @@
       }
 
       .btns {
-        margin-top: 10px;
         display: flex;
       }
 
@@ -190,6 +212,34 @@
         border: 2px solid white;
         border-radius: 8px;
         cursor: pointer;
+      }
+
+      .btn-delete {
+        background-color: white;
+        padding: 5px;
+        color: #7a7893;
+        font-size: 1.3rem;
+        border: 2px solid #fff;
+      }
+
+      .btn-delete:hover {
+        color: red;
+      }
+
+      .btn-edit {
+        background-color: white;
+        border: 2px solid #fff;
+        padding: 5px;
+      }
+
+      .anchor-edit {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: #7a7893;
+      }
+
+      .anchor-edit:hover {
+        color: black;
       }
 
       .like-btn {
@@ -205,13 +255,32 @@
         color: #4267b2;
       }
 
+      .logout {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+        background-color: #7a7893;
+        color: white;
+        font-size: 20px;
+        border-radius: 10px;
+        text-decoration: none;
+      }
+
+      .logout:hover {
+        text-decoration: underline;
+        background-color: white;
+        color: #7a7893;
+      }
+
       @media screen and (max-width: 800px) {
-        .plus {
-          right: 5px;
+        .plus,
+        .home {
+          margin-right: 10px;
         }
 
         .head {
-          font-size: 3rem;
+          font-size: 2rem;
         }
 
         .blogs {
@@ -221,6 +290,7 @@
         .bai {
           padding: 15px 10px;
           max-width: 100%;
+          width: auto;
         }
       }
     </style>
@@ -229,103 +299,17 @@
   <body>
     <nav class="nav">
       <h1 class="head">Blog site</h1>
-      <div class="dropdown" style="margin-right: 15px">
-        <a
-          class="profile"
-          href="/<%= profile.slugName %>/<%= profile.registerNumber %>"
-          ><i class="far fa-user"></i
-        ></a>
-        <div class="dropdown-content arrow-top">
-          <p style="text-align: center; color: white">Profile</p>
+
+      <div class="icons">
+        <!-- home -->
+
+        <div class="dropdown">
+          <a href="/feed" class="home"><i class="fas fa-home"></i></a>
+          <div class="dropdown-content arrow-top">
+            <p style="text-align: center; color: white">Feeds</p>
+          </div>
         </div>
       </div>
     </nav>
-
-    <section>
-      <div class="blogs">
-        <!-- all articles -->
-
-        <% article.forEach(function (e) { %>
-        <div class="bai">
-          <!-- single article -->
-          <div class="blog">
-            <!--author name-->
-            <a
-              href="/other-profile/<%= e.name %>/<%= e.registerNumber %>"
-              class="written-by"
-            >
-              <i
-                class="far fa-user"
-                style="margin-right: 5px; font-size: 18px"
-              ></i>
-              <%= e.name %>
-            </a>
-            <!-- title -->
-            <a href="/readMore/<%= e.slug %>/<%= e.blogNumber %>" class="head1"
-              ><%= e.title %></a
-            >
-
-            <!-- description -->
-            <p class="para"><%= e.description %></p>
-
-            <!-- date -->
-            <p class="date"><%= e.createdAt %></p>
-
-            <!-- no. of likes -->
-            <p class="like"><i class="far fa-thumbs-up"></i> <%= e.likes %></p>
-
-            <div
-              class="btns"
-              style="
-                margin-top: 10px;
-                align-items: center;
-                justify-content: center;
-              "
-            >
-              <!-- like button -->
-              <form action="/like/<%= e.id %>?_method=PUT" method="POST">
-                <div class="dropdown">
-                  <button type="submit" class="like-btn">
-                    <i class="far fa-thumbs-up"></i>
-                  </button>
-                  <div class="dropdown-content1 arrow-top1">
-                    <p style="text-align: center; color: white">Like</p>
-                  </div>
-                </div>
-              </form>
-
-              <!-- comment button -->
-              <div class="dropdown">
-                <a
-                  class="like-btn"
-                  href="/comment/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
-                  style="margin-left: 5px"
-                  ><i class="far fa-comment"></i
-                ></a>
-                <div class="dropdown-content1 arrow-top1">
-                  <p style="text-align: center; color: white">Comment</p>
-                </div>
-              </div>
-
-              <!-- comment button -->
-              <div class="dropdown">
-                <a
-                  class="like-btn"
-                  href="/save-post/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
-                  style="margin-left: 5px"
-                >
-                  <i class="far fa-bookmark"></i>
-                </a>
-
-                <div class="dropdown-content1 arrow-top1">
-                  <p style="text-align: center; color: white">Save</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <%})%>
-      </div>
-    </section>
   </body>
 </html>
