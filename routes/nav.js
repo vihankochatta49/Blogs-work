@@ -37,6 +37,11 @@ router.get(
   }
 );
 
+//otp route
+router.get("/otp", async (req, res) => {
+  res.render("otp");
+});
+
 //for read more
 router.get("/readMore/:slug/:blogNumber", async (req, res) => {
   const article = await a.findOne({ blogNumber: req.params.blogNumber });

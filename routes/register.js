@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const nodemailer = require("nodemailer");
 const rM = require(".././routes/registerModels");
 const a = require(".././routes/models");
 
@@ -50,11 +51,44 @@ router.post("/register", (req, res) => {
             userData.password = hashedPassword;
             const user = await rM.insertMany([userData]);
             console.log(user);
-            req.flash(
-              "success_msg",
-              "You have successfully registered and can login in"
-            );
-            res.redirect("/");
+
+            var otp = Math.floor(Math.random() * 1000000);
+
+            var transporter = nodemailer.createTransport({
+              service: "gmail",
+              auth: {
+                user: "vihankochatta49@gmail.com",
+                pass: "vihankoc",
+              },
+            });
+
+            var mailOptions = {
+              from: "vihankochatta49@gmail.com",
+              to: req.body.email,
+              subject: "OTP request for blog site",
+              text: `Your one time password is: ${otp}`,
+            };
+
+            console.log(mailOptions.text);
+
+            transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log("Email sent");
+              }
+            });
+
+            if (otp == req.body.otp) {
+              req.flash(
+                "success_msg",
+                "You have successfully registered and can login in"
+              );
+              res.redirect("/");
+            } else {
+              req.flash("error_msg", "Invalid OTP");
+              res.redirect("/register");
+            }
           } catch (err) {
             console.log(err);
           }
