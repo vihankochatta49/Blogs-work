@@ -3,7 +3,7 @@
   <head>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflarart.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
@@ -203,6 +203,12 @@
         color: #4267b2;
       }
 
+      .msg {
+        color: green;
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+
       @media screen and (max-width: 800px) {
         .plus {
           right: 5px;
@@ -228,7 +234,9 @@
     <nav class="nav">
       <h1 class="head">Blog site</h1>
       <div class="dropdown" style="margin-right: 15px">
-        <a class="profile" href="/<%= num.slugName %>/<%= num.registerNumber %>"
+        <a
+          class="profile"
+          href="/<%= profile.slugName %>/<%= profile.registerNumber %>"
           ><i class="far fa-user"></i
         ></a>
         <div class="dropdown-content arrow-top">
@@ -241,6 +249,7 @@
       <div class="blogs">
         <!-- all articles -->
 
+        <% article.forEach(function (e) { %>
         <div class="bai">
           <!-- single article -->
           <div class="blog">
@@ -250,35 +259,35 @@
               <div>
                 <!--author name-->
                 <a
-                  href="/other-profile/<%= art.name %>/<%= art.registerNumber %>"
+                  href="/other-profile/<%= e.name %>/<%= e.registerNumber %>"
                   class="written-by"
                 >
                   <i
                     class="far fa-user"
                     style="margin-right: 5px; font-size: 18px"
                   ></i>
-                  <%= art.name %>
+                  <%= e.name %>
                 </a>
                 <!-- title -->
                 <a
-                  href="/readMore/<%= art.slug %>/<%= art.blogNumber %>"
+                  href="/readMore/<%= e.slug %>/<%= e.blogNumber %>"
                   class="head1"
-                  ><%= art.title %></a
+                  ><%= e.title %></a
                 >
 
                 <!-- description -->
-                <p class="para"><%= art.description %></p>
+                <p class="para"><%= e.description %></p>
 
                 <!-- date -->
-                <p class="date"><%= art.createdAt %></p>
+                <p class="date"><%= e.createdAt %></p>
 
                 <!-- no. of likes -->
                 <p class="like">
-                  <i class="far fa-thumbs-up"></i> <%= art.likes %>
+                  <i class="far fa-thumbs-up"></i> <%= e.likes %>
                 </p>
                 <div class="btns" style="margin-top: 10px; align-items: center">
                   <!-- like button -->
-                  <form action="/like/<%= art.id %>?_method=PUT" method="POST">
+                  <form action="/like/<%= e.id %>?_method=PUT" method="POST">
                     <div class="dropdown">
                       <button type="submit" class="like-btn">
                         <i class="far fa-thumbs-up"></i>
@@ -293,7 +302,7 @@
                   <div class="dropdown">
                     <a
                       class="like-btn"
-                      href="/comment/<%= art.slug %>/<%= art.blogNumber %>/<%= art.registerNumber %>"
+                      href="/comment/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
                       style="margin-left: 5px"
                       ><i class="far fa-comment"></i
                     ></a>
@@ -304,10 +313,10 @@
                 </div>
               </div>
 
-              <% if(art.imageBase64) {%>
+              <% if(e.imageBase64) {%>
 
               <img
-                src="data:<%= art.contentType %>;base64,<%= art.imageBase64 %>"
+                src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
                 height="150"
                 width="150"
                 style="margin: 15px"
@@ -317,6 +326,7 @@
             </div>
           </div>
         </div>
+        <%})%>
       </div>
     </section>
   </body>

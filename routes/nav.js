@@ -57,12 +57,15 @@ router.get("/comment/:slug/:blogNumber/:registerNumber", async (req, res) => {
 });
 
 //for saving post
-router.get("/save/:slug/:blogNumber/:registerNumber", async (req, res) => {
-  const art = await a.findOne({ blogNumber: req.params.blogNumber });
-  const num = await userData.findOne({
+router.get("/save/post/:slug/:blogNumber/:registerNumber", async (req, res) => {
+  const article = await a.find({
+    blogNumber: req.params.blogNumber,
+    saved: "yes",
+  });
+  const profile = await userData.findOne({
     registerNumber: req.params.registerNumber,
   });
-  if (art != null) res.render("savedPost", { art, num });
+  if (article != null) res.render("savedPost", { article, profile });
   else res.redirect("/");
 });
 

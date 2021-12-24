@@ -203,6 +203,12 @@
         color: #4267b2;
       }
 
+      .msg {
+        color: green;
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+
       @media screen and (max-width: 800px) {
         .plus {
           right: 5px;
@@ -306,17 +312,22 @@
                   </div>
 
                   <div class="dropdown">
-                    <a
-                      class="like-btn"
-                      href="/save/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
-                      style="margin-left: 5px"
-                      ><i class="far fa-bookmark"></i
-                    ></a>
+                    <form action="/save/<%= e.id %>?_method=PUT" method="POST">
+                      <button
+                        type="submit"
+                        class="like-btn"
+                        style="margin-left: 5px"
+                      >
+                        <i class="far fa-bookmark" id="bookmark"></i>
+                      </button>
+                    </form>
                     <div class="dropdown-content1 arrow-top1">
                       <p style="text-align: center; color: white">Save</p>
                     </div>
                   </div>
                 </div>
+
+                <p class="msg" style="color: green"><%=post_msg %></p>
               </div>
 
               <% if(e.imageBase64) {%>
@@ -335,5 +346,13 @@
         <%})%>
       </div>
     </section>
+    <!--script for clearing flash and error messages-->
+    <script>
+      const clear = () => {
+        var errors = document.querySelectorAll(".msg");
+        errors.forEach((e) => (e.style.display = "none"));
+      };
+      setTimeout(clear, 5000);
+    </script>
   </body>
 </html>

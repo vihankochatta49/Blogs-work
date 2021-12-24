@@ -22,6 +22,7 @@ const schema = new mongoose.Schema({
   },
   contentType: String,
   imageBase64: String,
+  saved: { type: String, default: "no" },
 });
 
 //pre validation

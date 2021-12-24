@@ -64,7 +64,7 @@ router.post("/save/:registerNumber", store.single("images"), (req, res) => {
 });
 
 //updating blog
-router.put("/:id", store.single("images"), async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const art = Article.findById(req.params.id);
 
@@ -89,6 +89,30 @@ router.put("/like/:id", async (req, res) => {
     await Article.updateMany(art, {
       $inc: { likes: 1 },
     });
+    res.redirect("/feed");
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+//bookmark
+router.put("/save/:id", async (req, res) => {
+  try {
+    const art = Article.findById(req.params.id);
+    if (art.saved == "no") {
+      await Article.updateOne(art, {
+        $set: {
+          saved: "yes",
+        },
+      });
+    } else {
+      await Article.updateOne(art, {
+        $set: {
+          saved: "no",
+        },
+      });
+    }
+    req.flash("post_msg", "Post saved");
     res.redirect("/feed");
   } catch (e) {
     console.log(e);
