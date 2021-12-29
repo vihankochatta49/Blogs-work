@@ -112,7 +112,7 @@
       }
 
       .blogs {
-        width: 60%;
+        /* width: 60%; */
         display: flex;
         align-items: start;
         justify-content: center;
@@ -129,10 +129,10 @@
       }
 
       .blog {
+        width: 50%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: start;
-        flex-direction: column;
       }
 
       .written-by {
@@ -169,6 +169,7 @@
 
       .para {
         font-size: 1.3rem;
+        margin: 10px 0px;
       }
 
       .like {
@@ -226,6 +227,19 @@
           padding: 15px 10px;
           max-width: 100%;
         }
+
+        .blog {
+          max-width: 100%;
+          width: 100%;
+          flex-direction: column;
+        }
+
+        .blog img {
+          margin: auto !important;
+          height: 300px !important;
+          width: 300px !important;
+          padding: 10px;
+        }
       }
     </style>
   </head>
@@ -253,93 +267,85 @@
         <div class="bai">
           <!-- single article -->
           <div class="blog">
-            <div
-              style="display: flex; justify-content: space-between; width: 100%"
-            >
-              <div>
-                <!--author name-->
-                <a
-                  href="/other-profile/<%= e.name %>/<%= e.registerNumber %>"
-                  class="written-by"
-                >
-                  <i
-                    class="far fa-user"
-                    style="margin-right: 5px; font-size: 18px"
-                  ></i>
-                  <%= e.name %>
-                </a>
-                <!-- title -->
-                <a
-                  href="/readMore/<%= e.slug %>/<%= e.blogNumber %>"
-                  class="head1"
-                  ><%= e.title %></a
-                >
+            <div>
+              <!--author name-->
+              <a
+                href="/other-profile/<%= e.name %>/<%= e.registerNumber %>"
+                class="written-by"
+              >
+                <i
+                  class="far fa-user"
+                  style="margin-right: 5px; font-size: 18px"
+                ></i>
+                <%= e.name %>
+              </a>
+              <!-- title -->
+              <a
+                href="/readMore/<%= e.slug %>/<%= e.blogNumber %>"
+                class="head1"
+                ><%= e.title %></a
+              >
 
-                <!-- description -->
-                <p class="para"><%= e.description %></p>
+              <!-- description -->
+              <p class="para"><%= e.description %></p>
 
-                <!-- date -->
-                <p class="date"><%= e.createdAt %></p>
+              <!-- date -->
+              <p class="date"><%= e.createdAt %></p>
 
-                <!-- no. of likes -->
-                <p class="like">
-                  <i class="far fa-thumbs-up"></i> <%= e.likes %>
-                </p>
-                <div class="btns" style="margin-top: 10px; align-items: center">
-                  <!-- like button -->
-                  <form action="/like/<%= e.id %>?_method=PUT" method="POST">
-                    <div class="dropdown">
-                      <button type="submit" class="like-btn">
-                        <i class="far fa-thumbs-up"></i>
-                      </button>
-                      <div class="dropdown-content1 arrow-top1">
-                        <p style="text-align: center; color: white">Like</p>
-                      </div>
-                    </div>
-                  </form>
+              <!-- no. of likes -->
+              <p class="like">
+                <i class="far fa-thumbs-up"></i> <%= e.likes %>
+              </p>
 
-                  <!-- comment button -->
-                  <div class="dropdown">
-                    <a
-                      class="like-btn"
-                      href="/comment/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
-                      style="margin-left: 5px"
-                      ><i class="far fa-comment"></i
-                    ></a>
-                    <div class="dropdown-content1 arrow-top1">
-                      <p style="text-align: center; color: white">Comment</p>
-                    </div>
-                  </div>
+              <p class="msg" style="color: green"><%=post_msg %></p>
+            </div>
 
-                  <div class="dropdown">
-                    <form action="/save/<%= e.id %>?_method=PUT" method="POST">
-                      <button
-                        type="submit"
-                        class="like-btn"
-                        style="margin-left: 5px"
-                      >
-                        <i class="far fa-bookmark" id="bookmark"></i>
-                      </button>
-                    </form>
-                    <div class="dropdown-content1 arrow-top1">
-                      <p style="text-align: center; color: white">Save</p>
-                    </div>
-                  </div>
+            <% if(e.imageBase64) {%>
+
+            <img
+              src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
+              height="150"
+              width="150"
+              style="margin: 15px"
+            />
+
+            <% } %>
+          </div>
+          <div class="btns" style="margin-top: 10px; align-items: center">
+            <!-- like button -->
+            <form action="/like/<%= e.id %>?_method=PUT" method="POST">
+              <div class="dropdown">
+                <button type="submit" class="like-btn">
+                  <i class="far fa-thumbs-up"></i>
+                </button>
+                <div class="dropdown-content1 arrow-top1">
+                  <p style="text-align: center; color: white">Like</p>
                 </div>
-
-                <p class="msg" style="color: green"><%=post_msg %></p>
               </div>
+            </form>
 
-              <% if(e.imageBase64) {%>
+            <!-- comment button -->
+            <div class="dropdown">
+              <a
+                class="like-btn"
+                href="/comment/<%= e.slug %>/<%= e.blogNumber %>/<%= profile.registerNumber %>"
+                style="margin-left: 5px"
+                ><i class="far fa-comment"></i
+              ></a>
+              <div class="dropdown-content1 arrow-top1">
+                <p style="text-align: center; color: white">Comment</p>
+              </div>
+            </div>
 
-              <img
-                src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
-                height="150"
-                width="150"
-                style="margin: 15px"
-              />
-
-              <% } %>
+            <div class="dropdown">
+              <form action="/save/<%= e.id %>?_method=PUT" method="POST">
+                <button type="submit" class="like-btn" style="margin-left: 5px">
+                  <i class="far fa-bookmark" id="bookmark"></i>
+                </button>
+              </form>
+              <div class="dropdown-content1 arrow-top1">
+                <p style="text-align: center; color: white">Save</p>
+              </div>
             </div>
           </div>
         </div>
