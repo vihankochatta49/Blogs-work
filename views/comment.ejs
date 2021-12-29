@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<head>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link
@@ -8,7 +10,6 @@
     referrerpolicy="no-referrer"
   />
   <title>Blog site</title>
-</head>
 
 <style>
   * {
@@ -17,11 +18,6 @@
   }
 
   body {
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     font-family: sans-serif;
   }
 
@@ -63,7 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
+    width: 100%;
     margin-top: 15px;
   }
 
@@ -167,24 +163,13 @@
   }
 
   @media screen and (max-width: 800px) {
-    body {
-      margin: 0px 10px;
+    body > div {
+      width: 95% !important;
     }
 
-    .top-bar {
-      width: 100%;
-    }
-
-    .blank {
-      width: 100%;
-    }
-
-    .send {
-      width: 100%;
-    }
   }
 </style>
-
+</head>
 <body>
   <div
     style="
@@ -195,7 +180,8 @@
       max-width: 100%;
       border: 2px solid;
       border-radius: 20px;
-      height: 80%;
+      height: 85vh;
+      margin-top: 10px;
     "
   >
     <div class="top-bar">
@@ -283,3 +269,4 @@
     });
   </script>
 </body>
+</html>
