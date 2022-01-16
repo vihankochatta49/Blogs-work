@@ -19,24 +19,32 @@
 
       body {
         font-family: sans-serif;
-      }
-
-      .cont {
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 100vh;
+      }
+
+      .cont {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
+        border-radius: 10px;
       }
 
       .mssg {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         background: #189940;
         color: white;
         font-size: 25px;
         width: 25%;
         text-align: center;
-        height: 500px;
+        height: 555px;
       }
 
       .form {
@@ -114,6 +122,7 @@
         margin-top: 10px;
         margin-left: 10px;
       }
+      /* box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important; */
 
       .btn-cancel:hover {
         background-color: red;
@@ -147,7 +156,27 @@
 
   <body>
     <div class="cont">
-      <div class="mssg"><h1>welcome!</h1></div>
+      <div class="mssg">
+        <h1>Blog Site</h1>
+        <h1>Welcome!</h1>
+        <div>
+          <p>Already have an account!</p>
+          <br />
+          <a
+            href="/"
+            class="log"
+            style="
+              border: 2px solid white;
+              border-radius: 5px;
+              padding: 5px;
+              color: white;
+              text-decoration: none;
+            "
+          >
+            Login
+          </a>
+        </div>
+      </div>
       <div class="form">
         <form action="/register" method="POST">
           <!--error messages-->
@@ -182,7 +211,7 @@
           <div class="btns">
             <button class="btn" type="submit">Register</button>
           </div>
-          <p style="margin: auto; font-size: 25px; color: #8fe38e">OR</p>
+          <p style="margin: auto; font-size: 25px; color: #7a7893">OR</p>
           <a class="google"
             ><i class="fab fa-google" style="margin-right: 10px"></i> sign up
             with GOOGLE</a

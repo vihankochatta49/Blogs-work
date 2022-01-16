@@ -19,6 +19,36 @@
 
       body {
         font-family: sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .cont {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
+        border-radius: 10px;
+      }
+
+      .mssg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background: #189940;
+        color: white;
+        font-size: 25px;
+        width: 25%;
+        text-align: center;
+        height: 555px;
+      }
+
+      .form {
+        width: 50%;
       }
 
       form {
@@ -30,8 +60,8 @@
         margin: auto;
       }
 
-      .msg {
-        color: green;
+      .error {
+        color: red;
         font-size: 1.5em;
         margin-bottom: 10px;
       }
@@ -92,6 +122,7 @@
         margin-top: 10px;
         margin-left: 10px;
       }
+      /* box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important; */
 
       .btn-cancel:hover {
         background-color: red;
@@ -100,6 +131,18 @@
       .anchor {
         text-decoration: none;
         color: white;
+      }
+
+      .google {
+        background-color: #189940;
+        padding: 15px;
+        border-radius: 30px;
+        color: white;
+        font-size: 25px;
+        width: 65%;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
 
       @media screen and (max-width: 640px) {
@@ -112,51 +155,76 @@
   </head>
 
   <body>
-    <h1 class="head2">Login</h1>
-    <form action="/login" method="POST">
-      <!--error and success messages-->
-      <% if(typeof errors != 'undefined') {%> <%errors.forEach(function(error)
-      {%>
-      <p class="msg" style="color: yellow"><%=error.msg %></p>
-      <%});%> <% } %> <% if(success_msg != '') {%>
-      <!--flash success message-->
-      <p class="msg" style="color: green"><%=success_msg %></p>
-      <% } %> <% if(error_msg != '') {%>
-      <!--flash error message-->
-      <p class="msg" style="color: red"><%=error_msg %></p>
-      <% } %> <% if(error != '') {%>
-      <p class="msg" style="color: red"><%=error %></p>
-      <% } %>
-
-      <!-- email -->
-      <label for="email">Email:</label>
-      <input type="text" class="write" name="email" id="email" required />
-      <!-- password -->
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        class="write"
-        name="password"
-        id="password"
-        required
-      />
-
-      <!-- buttons -->
-      <div class="btns">
-        <button class="btn" type="submit">Login</button>
+    <div class="cont">
+      <div class="mssg">
+        <h1>Blog Site</h1>
+        <p style="font-size: 30px">Welcome back!</p>
+        <div>
+          <p>Don't have an account!</p>
+          <br />
+          <a
+            href="/register"
+            class="log"
+            style="
+              border: 2px solid white;
+              border-radius: 5px;
+              padding: 5px;
+              color: white;
+              text-decoration: none;
+            "
+          >
+            Register
+          </a>
+        </div>
       </div>
+      <div class="form">
+        <form action="/login" method="POST">
+          <!--error and success messages-->
+          <% if(typeof errors != 'undefined') {%>
+          <%errors.forEach(function(error) {%>
+          <p class="msg" style="color: yellow"><%=error.msg %></p>
+          <%});%> <% } %> <% if(success_msg != '') {%>
+          <!--flash success message-->
+          <p class="msg" style="color: green"><%=success_msg %></p>
+          <% } %> <% if(error_msg != '') {%>
+          <!--flash error message-->
+          <p class="msg" style="color: red"><%=error_msg %></p>
+          <% } %> <% if(error != '') {%>
+          <p class="msg" style="color: red"><%=error %></p>
+          <% } %>
 
-      <!--for register-->
-      <p>Don't have an account? <a href="/register">Register</a></p>
-    </form>
+          <!-- email -->
+          <label for="email">Email:</label>
+          <input type="text" class="write" name="email" id="email" required />
+          <!-- password -->
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            class="write"
+            name="password"
+            id="password"
+            required
+          />
 
-    <!--script for clearing flash and error messages-->
+          <!-- buttons -->
+          <div class="btns">
+            <button class="btn" type="submit">Login</button>
+          </div>
+          <p style="margin: auto; font-size: 25px; color: #7a7893">OR</p>
+          <a class="google"
+            ><i class="fab fa-google" style="margin-right: 10px"></i> continue
+            with GOOGLE</a
+          >
+        </form>
+      </div>
+    </div>
+    <!-- script for clearing flash/error messages-->
     <script>
       const clear = () => {
-        var errors = document.querySelectorAll(".msg");
+        var errors = document.querySelectorAll(".error");
         errors.forEach((e) => (e.style.display = "none"));
       };
-      setTimeout(clear, 10000);
+      setTimeout(clear, 5000);
     </script>
   </body>
 </html>
