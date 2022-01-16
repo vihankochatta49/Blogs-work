@@ -21,6 +21,28 @@
         font-family: sans-serif;
       }
 
+      .cont {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mssg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #189940;
+        color: white;
+        font-size: 25px;
+        width: 25%;
+        text-align: center;
+        height: 500px;
+      }
+
+      .form {
+        width: 50%;
+      }
+
       form {
         max-width: 500px;
         padding: 25px;
@@ -102,6 +124,18 @@
         color: white;
       }
 
+      .google {
+        background-color: #189940;
+        padding: 15px;
+        border-radius: 30px;
+        color: white;
+        font-size: 25px;
+        width: 60%;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
       @media screen and (max-width: 640px) {
         form {
           margin: 10px;
@@ -112,52 +146,50 @@
   </head>
 
   <body>
-    <h1 class="head2">Register</h1>
-    <form action="/register" method="POST">
-      <!--error messages-->
-      <% if(typeof errors != 'undefined') { %> <% errors.forEach(function(error)
-      { %>
-      <p class="error"><%= error.msg %></p>
-      <% }) %> <% } %>
+    <div class="cont">
+      <div class="mssg"><h1>welcome!</h1></div>
+      <div class="form">
+        <form action="/register" method="POST">
+          <!--error messages-->
+          <% if(typeof errors != 'undefined') { %> <%
+          errors.forEach(function(error) { %>
+          <p class="error"><%= error.msg %></p>
+          <% }) %> <% } %>
 
-      <!-- name -->
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" class="write" required />
-      <!-- email -->
-      <label for="email">Email:</label>
-      <input type="text" class="write" name="email" id="email" required />
-      <!-- password -->
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        class="write"
-        name="password"
-        id="password"
-        required
-      />
-      <!--confirm password -->
-      <label for="password2">Confirm password:</label>
-      <input
-        type="password"
-        class="write"
-        name="password2"
-        id="password2"
-        required
-      />
+          <!-- email -->
+          <label for="email">Email:</label>
+          <input type="text" class="write" name="email" id="email" required />
+          <!-- password -->
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            class="write"
+            name="password"
+            id="password"
+            required
+          />
+          <!--confirm password -->
+          <label for="password2">Confirm password:</label>
+          <input
+            type="password"
+            class="write"
+            name="password2"
+            id="password2"
+            required
+          />
 
-      <!--otp -->
-      <label for="password2">OTP:</label>
-      <input type="text" class="write" name="otp" id="otp" required />
-
-      <!-- buttons -->
-      <div class="btns">
-        <button class="btn" type="submit">Register</button>
+          <!-- buttons -->
+          <div class="btns">
+            <button class="btn" type="submit">Register</button>
+          </div>
+          <p style="margin: auto; font-size: 25px; color: #8fe38e">OR</p>
+          <a class="google"
+            ><i class="fab fa-google" style="margin-right: 10px"></i> sign up
+            with GOOGLE</a
+          >
+        </form>
       </div>
-
-      <!--for login-->
-      <p>Already have an account? <a href="/">Login</a></p>
-    </form>
-
+    </div>
     <!-- script for clearing flash/error messages-->
     <script>
       const clear = () => {
