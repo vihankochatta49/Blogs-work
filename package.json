@@ -19,8 +19,10 @@
     "markdown": "^0.5.0",
     "method-override": "^3.0.0",
     "mongoose": "^6.0.13",
+    "mongoose-findorcreate": "^3.0.0",
     "nodemailer": "^6.7.2",
     "passport": "^0.5.1",
+    "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",
     "slugify": "^1.6.4",
     "socket.io": "^4.4.0"
