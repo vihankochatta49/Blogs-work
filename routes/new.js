@@ -63,16 +63,20 @@ router.put("/:id", async (req, res) => {
 });
 
 //counting likes
-router.put("/like/:id", async (req, res) => {
-  try {
-    const art = Article.findById(req.params.id);
-    await Article.updateMany(art, {
+router.put("/like/post/:id", (req, res) => {
+  Article.findByIdAndUpdate(
+    req.params.id,
+    {
       $inc: { likes: 1 },
-    });
-    res.redirect("/feed");
-  } catch (e) {
-    console.log(e);
-  }
+    },
+    { new: true }
+  ).exec((err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 module.exports = router;
