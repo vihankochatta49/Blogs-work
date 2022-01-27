@@ -24,18 +24,18 @@ router.post("/save/:name", store.single("images"), (req, res) => {
 
   const createDoc = async () => {
     try {
-      // const files = req.file;
+      const files = req.file;
 
       // convert images to base64 emcoding
-      // let img = fs.readFileSync(files.path);
-      // encode_image = img.toString("base64");
+      let img = fs.readFileSync(files.path);
+      encode_image = img.toString("base64");
 
-      //create object to store data in db
-      // let finalimg = {
-      //   filename: files.originalname,
-      //   contentType: files.mimetype,
-      //   imageBase64: encode_image,
-      // };
+      // create object to store data in db
+      let finalimg = {
+        filename: files.originalname,
+        contentType: files.mimetype,
+        imageBase64: encode_image,
+      };
 
       const registeredUser = await userdb.findOne({
         slugName: req.params.name,
@@ -49,9 +49,9 @@ router.post("/save/:name", store.single("images"), (req, res) => {
         blogNumber: blogNumber,
         registerNumber: registeredUser.registerNumber,
         name: registeredUser.name,
-        // filename: finalimg.filename,
-        // contentType: finalimg.contentType,
-        // imageBase64: finalimg.imageBase64,
+        filename: finalimg.filename,
+        contentType: finalimg.contentType,
+        imageBase64: finalimg.imageBase64,
       });
 
       const blog = await blogdb.insertMany([apprec]);

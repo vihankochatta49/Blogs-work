@@ -170,8 +170,11 @@
         </div>
       </div>
     </nav>
-    <form action="/save/<%= registeredUser.slugName %>" method="POST">
-      <!-- enctype="multipart/form-data" -->
+    <form
+      action="/save/<%= registeredUser.slugName %>"
+      method="POST"
+      enctype="multipart/form-data"
+    >
       <!-- new article -->
       <label for="title">Title:</label
       ><!-- title -->
@@ -194,7 +197,7 @@
         id="markdown"
         required
       ></textarea>
-      <!-- <input type="file" name="images" style="margin: 10px 0px" /> -->
+      <input type="file" name="images" style="margin: 10px 0px" />
       <div class="btns">
         <!-- buttons -->
         <button class="btn" type="submit">Save</button>
