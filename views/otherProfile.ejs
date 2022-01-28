@@ -94,7 +94,6 @@
         border-radius: 10px;
         min-width: 600px;
         max-width: 800px;
-        /* width: 100%; */
         background-color: white;
         padding: 15px;
         margin: 20px 0px 10px;
@@ -252,6 +251,7 @@
       </div>
     </nav>
 
+    <!-- user info -->
     <div class="userInfo">
       <p class="user-name"><%= profile.name %></p>
       <p class="user-posts">Posts: <%= blogs.length %></p>
@@ -265,6 +265,7 @@
         background-color: #f2f2f2;
       "
     >
+      <!-- no post yet -->
       <% if( blogs.length == 0) {%>
       <h1
         style="
@@ -317,6 +318,7 @@
                 </p>
               </div>
 
+              <!-- uploaded image -->
               <% if(e.imageBase64) {%>
 
               <img
@@ -331,7 +333,7 @@
           </div>
           <div class="btns" style="margin-top: 10px; align-items: center">
             <!-- like button -->
-            <!-- <form action="/like/<%= e.id %>?_method=PUT" method="POST"> -->
+
             <div class="dropdown">
               <button
                 type="submit"
@@ -341,7 +343,7 @@
                 <i class="far fa-thumbs-up"></i>
               </button>
             </div>
-            <!-- </form> -->
+
             <!-- comment button -->
             <div class="dropdown">
               <a
@@ -357,6 +359,7 @@
       </div>
       <%}%>
     </section>
+    <!-- script for fetching likes detail -->
     <script>
       function likePost(id) {
         var totalLikes = document.getElementById(`${id}`);

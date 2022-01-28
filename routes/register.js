@@ -23,6 +23,7 @@ router.post("/register", (req, res) => {
     errors.push({ msg: "Password should be at least 6 characters long" });
   }
 
+  //check error
   if (errors.length > 0) {
     res.render("register", { errors, name, password, password2 });
   } else {
@@ -51,6 +52,7 @@ router.post("/register", (req, res) => {
             //saving to db
             const user = await rM.insertMany([userData]);
 
+            //success message to login page
             req.flash(
               "success_msg",
               "You have successfully registered and can login in"
@@ -70,7 +72,7 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/feed",
-    failureRedirect: "/",
+    failureRedirect: "/login",
     failureFlash: true,
   })(req, res, next);
 });

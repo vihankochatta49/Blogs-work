@@ -6,12 +6,14 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const a = require("./routes/models");
-require("./config/googleAuth");
 const app = express();
 const port = process.env.PORT || 3000;
 
 //passport config
 require("./config/passport")(passport);
+
+//google auth config
+require("./config/googleAuth");
 
 //ejs engine
 app.set("view engine", "ejs");
@@ -58,7 +60,6 @@ app.use(
     secret: "secret",
     resave: true,
     saveUninitialized: true,
-    // cookie: { secure: true }
     cookie: {
       expires: 1000000000000000,
     },
@@ -80,6 +81,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//handles authentication with google
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
@@ -93,9 +95,11 @@ app.get(
   })
 );
 
+//handle google auth failure
 app.get("/auth/google/failure", (req, res) => {
   res.send("Failed to authenticate..");
 });
+
 //getting routes/new.js
 app.use("/", require(path.join(__dirname, "routes/new")));
 

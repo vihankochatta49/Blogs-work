@@ -56,60 +56,6 @@
         display: inline-block;
       }
 
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        right: 0px;
-        top: 50px;
-        background-color: #2d2d2d;
-        min-width: 100px;
-        padding: 8px 0px;
-        z-index: 1;
-        border-radius: 10px;
-      }
-
-      .arrow-top:after {
-        content: " ";
-        position: absolute;
-        right: 19px;
-        top: -15px;
-        border-top: none;
-        border-right: 15px solid transparent;
-        border-left: 15px solid transparent;
-        border-bottom: 15px solid #2d2d2d;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      .dropdown-content1 {
-        display: none;
-        position: absolute;
-        left: -17px;
-        top: 45px;
-        background-color: #2d2d2d;
-        min-width: 100px;
-        padding: 8px 0px;
-        z-index: 1;
-        border-radius: 10px;
-      }
-
-      .arrow-top1:after {
-        content: " ";
-        position: absolute;
-        left: 15px;
-        top: -15px;
-        border-top: none;
-        border-right: 15px solid transparent;
-        border-left: 15px solid transparent;
-        border-bottom: 15px solid #2d2d2d;
-      }
-
-      .dropdown:hover .dropdown-content1 {
-        display: block;
-      }
-
       .home {
         font-size: 2.2rem;
         color: #fff;
@@ -345,6 +291,7 @@
       </div>
     </nav>
 
+    <!-- user info -->
     <div class="userInfo">
       <p class="user-name"><%= profile.name %></p>
       <p class="user-posts">Posts: <%= blogs.length %></p>
@@ -358,6 +305,7 @@
         background-color: #f2f2f2;
       "
     >
+      <!-- no post yet -->
       <% if( blogs.length == 0) {%>
       <h1
         style="
@@ -410,6 +358,7 @@
                 </p>
               </div>
 
+              <!-- uploaded image -->
               <% if(e.imageBase64) {%>
 
               <img
@@ -450,7 +399,7 @@
           </div>
           <div class="btns" style="margin-top: 10px; align-items: center">
             <!-- like button -->
-            <!-- <form action="/like/<%= e.id %>?_method=PUT" method="POST"> -->
+
             <div class="dropdown">
               <button
                 type="submit"
@@ -460,7 +409,7 @@
                 <i class="far fa-thumbs-up"></i>
               </button>
             </div>
-            <!-- </form> -->
+
             <!-- comment button -->
             <div class="dropdown">
               <a
@@ -480,6 +429,7 @@
         ><i class="fas fa-sign-out-alt"></i> Logout</a
       >
     </section>
+    <!-- script for fetching likes detail -->
     <script>
       function likePost(id) {
         var totalLikes = document.getElementById(`${id}`);

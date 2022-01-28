@@ -17,6 +17,7 @@ const schema = new mongoose.Schema({
   sanitizedHtml: { type: String, required: true },
   likes: { type: Number, default: 0 },
   roomName: String,
+  //for image
   filename: {
     type: String,
     unique: true,
@@ -36,6 +37,7 @@ schema.pre("validate", function (next) {
   }
 
   if (this.date) {
+    //changing date format
     var tarikh = new Date(this.date);
     // this.createdAt = tarikh.toDateString();
     var d = tarikh.getDate();
@@ -45,7 +47,7 @@ schema.pre("validate", function (next) {
   }
 
   if (this.name) {
-    this.slugName = slugify(this.name);
+    this.slugName = slugify(this.name); //slugify user name
   }
   next();
 });

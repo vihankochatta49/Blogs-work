@@ -122,7 +122,6 @@
         margin-top: 10px;
         margin-left: 10px;
       }
-      /* box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important; */
 
       .btn-cancel:hover {
         background-color: red;
@@ -210,6 +209,7 @@
         <div class="already">
           <p style="font-size: 20px">Don't have an account!</p>
           <br />
+          <!-- Sign-up button -->
           <a
             href="/register"
             class="log"
@@ -226,6 +226,7 @@
         </div>
       </div>
       <div class="form">
+        <!-- login form -->
         <form action="/login" method="POST">
           <!--error and success messages-->
           <% if(typeof errors != 'undefined') {%>
@@ -259,10 +260,12 @@
             <button class="btn" type="submit">Login</button>
           </div>
           <p style="margin: auto; font-size: 25px; color: #7a7893">OR</p>
+          <!-- authenticate with google -->
           <a class="google" href="/auth/google"
             ><i class="fab fa-google" style="margin-right: 10px"></i> continue
             with GOOGLE</a
           >
+          <!-- don't have account -->
           <p
             class="exist"
             style="font-size: 1.1rem; text-align: center; margin-top: 10px"

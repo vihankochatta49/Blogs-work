@@ -13,25 +13,23 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    // required: true,
   },
   password2: {
     type: String,
   },
   registerNumber: {
     type: String,
-    // required: true,
   },
   slugName: String,
-  proivder: String,
+  proivder: String, //for google auth
 });
 
 userSchema.pre("validate", function (next) {
   if (this.name) {
-    this.slugName = slugify(this.name);
+    this.slugName = slugify(this.name); //slugify user name
   }
   next();
 });
-userSchema.plugin(findOrCreate);
+userSchema.plugin(findOrCreate); //for google auth
 
 module.exports = new mongoose.model("userData", userSchema);

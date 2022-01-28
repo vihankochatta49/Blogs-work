@@ -87,30 +87,6 @@
         max-width: 100%;
       }
 
-      .protfolio {
-        max-width: 100%;
-        width: 300px;
-        font-size: 1.2rem;
-        height: fit-content;
-        margin-left: 50px;
-        margin-right: 15px;
-        margin-top: 35px;
-        background-color: rgb(157 146 219 / 80%);
-        border: 2px solid white;
-        border-radius: 10px;
-        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
-        line-height: 1.8;
-        padding: 15px;
-      }
-
-      .protfolio a {
-        background-color: white;
-      }
-
-      .protfolio a:hover {
-        background-color: rgb(255 255 255 / 80%);
-      }
-
       .blog {
         width: 100%;
         display: flex;
@@ -191,6 +167,30 @@
         color: green;
         font-size: 1.2em;
         margin-top: 10px;
+      }
+
+      .protfolio {
+        max-width: 100%;
+        width: 300px;
+        font-size: 1.2rem;
+        height: fit-content;
+        margin-left: 50px;
+        margin-right: 15px;
+        margin-top: 35px;
+        background-color: rgb(157 146 219 / 80%);
+        border: 2px solid white;
+        border-radius: 10px;
+        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
+        line-height: 1.8;
+        padding: 15px;
+      }
+
+      .protfolio a {
+        background-color: white;
+      }
+
+      .protfolio a:hover {
+        background-color: rgb(255 255 255 / 80%);
       }
 
       @media screen and (max-width: 800px) {
@@ -289,6 +289,7 @@
 
             </div>
 
+            <!-- uploaded image -->
             <% if(e.imageBase64) {%>
 
             <img
@@ -302,13 +303,11 @@
           </div>
           <div class="btns" style="margin-top: 10px; align-items: center">
             <!-- like button -->
-            <!-- <form action="/like/<%= e.id %>?_method=PUT" method="POST"> -->
               <div class="dropdown">
                 <button class="like-btn" onclick="likePost('<%= e.id %>')">
                   <i class="far fa-thumbs-up"></i>
                 </button>
               </div>
-            <!-- </form> -->
 
             <!-- comment button -->
             <div class="dropdown">
@@ -324,6 +323,7 @@
         <%})%>
       </div>
       <div>
+        <!-- start writting -->
         <div class="protfolio">
           <p style="font-weight: 600; margin-bottom: 20px">
             Write on Blog site
@@ -342,6 +342,7 @@
             >Start writing</a
           >
         </div>
+        <!-- follow us -->
         <div class="protfolio" style="text-align: center; background: white">
           <h1 style="font-weight: 400; font-size: 2.2rem">Follow us on</h1>
           <a style="font-size: 2.8em; margin-right: 20px; color: #00acee"
@@ -357,6 +358,7 @@
         
       </div>
     </section>
+    <!-- script for fetching likes detail -->
     <script>
       function likePost(id) {
         var totalLikes = document.getElementById(`${id}`);
